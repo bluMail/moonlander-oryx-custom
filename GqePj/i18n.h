@@ -5,7 +5,7 @@
 #define DE_SS KC_MINS
 #define DE_Z KC_Y
 #define DE_AT ALGR(KC_Q)
-#define DE_CIRC KC_GRV
+#define DE_GRV S(KC_EQL)
 #define DE_HASH KC_NUHS
 #define DE_PIPE ALGR(KC_NUBS)
 #define DE_LBRC ALGR(KC_8)
