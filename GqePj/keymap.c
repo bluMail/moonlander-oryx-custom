@@ -6,6 +6,8 @@
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
+  TOGAMING,
+  TOKOY,
 };
 
 enum moonlander_layers {
@@ -16,13 +18,8 @@ enum moonlander_layers {
     GAMING,   //4
 };
 
-enum custom_keycodes {
-    TOGAMING,
-    TOKOY,
-};
-
 enum tap_dance_codes {
-  DANCE_CMDS,
+  DANCE_CMD,
   DANCE_QUTS,
   DANCE_QUE,
   DANCE_BRC,
@@ -148,10 +145,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_off(MOVEMENT);
             layer_off(SYMBOLS);
             layer_off(WM);
-            if(min_toggled)
-                layer_on(MIN);
-            else
-                layer_on(GAMING);
+            layer_on(GAMING);
             autoshift_disable();
         }
         return false;
@@ -160,7 +154,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             layer_off(MIN);
             layer_off(GAMING);
-            layer_off(GAMING2);
             autoshift_enable();
         }
         return false;
@@ -460,7 +453,7 @@ void dance_slash_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 tap_dance_action_t tap_dance_actions[] = {
-        [DANCE_CMDS] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
+        [DANCE_CMD] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
         [DANCE_QUTS] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_quotes, dance_quotes_finished, dance_quotes_reset),
         [DANCE_QUE] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_que_excl, dance_que_excl_finished, dance_que_excl_reset),
         [DANCE_BRC] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_brc, dance_brc_finished, dance_brc_reset),
