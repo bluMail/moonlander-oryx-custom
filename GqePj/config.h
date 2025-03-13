@@ -24,7 +24,7 @@
 
 #define AUTO_SHIFT_MODIFIERS
 #define AUTO_SHIFT_TIMEOUT 140
-#define SERIAL_NUMBER "GqePj/x99aX0"
+#define SERIAL_NUMBER "GqePj/7vvpXA"
 #define LAYER_STATE_8BIT
 #define COMBO_COUNT 3
 
