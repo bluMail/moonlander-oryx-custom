@@ -23,3 +23,4 @@
 #define DE_PLUS KC_RBRC
 #define DE_LESS KC_NUBS
 #define DE_MINS KC_SLSH
+#define DE_EQL S(KC_0)
