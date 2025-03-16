@@ -158,6 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_off(WM);
             layer_on(GAMING);
             autoshift_disable();
+            combo_disable();
         }
         return false;
 
@@ -165,6 +166,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             layer_off(GAMING);
             autoshift_enable();
+            combo_enable();
         }
         return false;
 
