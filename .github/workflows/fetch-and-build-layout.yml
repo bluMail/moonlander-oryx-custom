@@ -26,7 +26,7 @@ on:
           - ergodox_ez/stm32/shine
           - planck_ez
           - planck_ez/glow
-        default: moonlander
+        default: voyager
 
 permissions:
   contents: write
