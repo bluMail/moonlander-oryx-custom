@@ -10,7 +10,8 @@ on:
         options:
           - "GqePj"
           - "PAmMl"
-        default: "GqePj"
+          - "a7EMD"
+        default: "a7EMD"
       layout_geometry:
         description: "Keyboard type"
         type: choice
