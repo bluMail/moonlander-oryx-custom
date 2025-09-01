@@ -98,6 +98,14 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo6, LCTL(LSFT(KC_V))),
 };
 
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
+        case DRAG_SCROLL ... NAVIGATOR_AIM:
+            return true;
+    }
+    return is_mouse_record_user(keycode, record);
+}
+
 extern rgb_config_t rgb_matrix_config;
 
 RGB hsv_to_rgb_with_value(HSV hsv) {
