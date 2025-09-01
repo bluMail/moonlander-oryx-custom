@@ -18,13 +18,13 @@ enum tap_dance_codes {
   DANCE_1,
 };
 
-#define DUAL_FUNC_0 LT(4, KC_F7)
-#define DUAL_FUNC_1 LT(4, KC_F9)
-#define DUAL_FUNC_2 LT(1, KC_B)
-#define DUAL_FUNC_3 LT(4, KC_F24)
-#define DUAL_FUNC_4 LT(3, KC_O)
-#define DUAL_FUNC_5 LT(7, KC_P)
-#define DUAL_FUNC_6 LT(12, KC_H)
+#define DUAL_FUNC_0 LT(5, KC_F4)
+#define DUAL_FUNC_1 LT(9, KC_F14)
+#define DUAL_FUNC_2 LT(2, KC_F19)
+#define DUAL_FUNC_3 LT(8, KC_0)
+#define DUAL_FUNC_4 LT(9, KC_M)
+#define DUAL_FUNC_5 LT(15, KC_0)
+#define DUAL_FUNC_6 LT(2, KC_F16)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_BRIGHTNESS_UP,KC_BRIGHTNESS_DOWN,KC_SYSTEM_SLEEP,KC_SYSTEM_WAKE, KC_SYSTEM_POWER,QK_BOOT,        
     LCTL(KC_W),     KC_MS_WH_UP,    KC_F,           LSFT(KC_O),     KC_R,           KC_MS_WH_LEFT,  KC_TRANSPARENT,                                 KC_TRANSPARENT, DE_LCBR,        KC_HOME,        KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, QK_BOOT,        
-    KC_TRANSPARENT, KC_MS_WH_DOWN,  KC_MS_BTN1,     DRAG_SCROLL,    KC_MS_BTN2,     KC_MS_WH_RIGHT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, DE_RCBR,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_ESCAPE,      
+    KC_ESCAPE,      KC_MS_WH_DOWN,  KC_MS_BTN1,     DRAG_SCROLL,    KC_MS_BTN2,     KC_MS_WH_RIGHT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, DE_RCBR,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_ESCAPE,      
     KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_WWW_BACK,    KC_WWW_FORWARD,                                 KC_G,           KC_WWW_BACK,    KC_WWW_REFRESH, KC_WWW_FORWARD, CW_TOGG,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RGB_SLD,                                                                                                        RGB_MODE_FORWARD,KC_TRANSPARENT, RGB_VAI,        RGB_VAD,        RGB_HUI,        RGB_HUD,        
     KC_LEFT_SHIFT,  MO(3),          KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
@@ -161,6 +161,13 @@ extern bool navigator_turbo;
 extern bool navigator_aim;
 void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);
+}
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case DRAG_SCROLL:
+      return true;
+  }
+  return is_mouse_record_user(keycode, record);
 }
 
 
