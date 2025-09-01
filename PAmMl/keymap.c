@@ -8,6 +8,7 @@
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
+  DRAG_SCROLL,
 };
 
 
@@ -17,13 +18,13 @@ enum tap_dance_codes {
   DANCE_1,
 };
 
-#define DUAL_FUNC_0 LT(9, KC_P)
-#define DUAL_FUNC_1 LT(6, KC_F20)
-#define DUAL_FUNC_2 LT(13, KC_F15)
-#define DUAL_FUNC_3 LT(3, KC_F6)
-#define DUAL_FUNC_4 LT(3, KC_B)
-#define DUAL_FUNC_5 LT(8, KC_V)
-#define DUAL_FUNC_6 LT(7, KC_F6)
+#define DUAL_FUNC_0 LT(4, KC_F7)
+#define DUAL_FUNC_1 LT(4, KC_F9)
+#define DUAL_FUNC_2 LT(1, KC_B)
+#define DUAL_FUNC_3 LT(4, KC_F24)
+#define DUAL_FUNC_4 LT(3, KC_O)
+#define DUAL_FUNC_5 LT(7, KC_P)
+#define DUAL_FUNC_6 LT(12, KC_H)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -44,9 +45,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [2] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_BRIGHTNESS_UP,KC_BRIGHTNESS_DOWN,KC_SYSTEM_SLEEP,KC_SYSTEM_WAKE, KC_SYSTEM_POWER,QK_BOOT,        
-    LCTL(KC_W),     KC_MS_WH_UP,    KC_MS_BTN1,     KC_MS_UP,       KC_MS_BTN2,     KC_MS_WH_LEFT,  KC_TRANSPARENT,                                 KC_TRANSPARENT, DE_LCBR,        KC_HOME,        KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, QK_BOOT,        
-    KC_TRANSPARENT, KC_MS_WH_DOWN,  KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_MS_WH_RIGHT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, DE_RCBR,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_ESCAPE,      
-    KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_MS_BTN4,     KC_MS_BTN5,                                     KC_G,           KC_WWW_BACK,    KC_WWW_REFRESH, KC_WWW_FORWARD, CW_TOGG,        KC_TRANSPARENT, 
+    LCTL(KC_W),     KC_MS_WH_UP,    KC_F,           LSFT(KC_O),     KC_R,           KC_MS_WH_LEFT,  KC_TRANSPARENT,                                 KC_TRANSPARENT, DE_LCBR,        KC_HOME,        KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, QK_BOOT,        
+    KC_TRANSPARENT, KC_MS_WH_DOWN,  KC_MS_BTN1,     DRAG_SCROLL,    KC_MS_BTN2,     KC_MS_WH_RIGHT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, DE_RCBR,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_ESCAPE,      
+    KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_WWW_BACK,    KC_WWW_FORWARD,                                 KC_G,           KC_WWW_BACK,    KC_WWW_REFRESH, KC_WWW_FORWARD, CW_TOGG,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RGB_SLD,                                                                                                        RGB_MODE_FORWARD,KC_TRANSPARENT, RGB_VAI,        RGB_VAD,        RGB_HUI,        RGB_HUD,        
     KC_LEFT_SHIFT,  MO(3),          KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -390,6 +391,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             rgblight_mode(1);
         }
         return false;
+    case DRAG_SCROLL:
+      if (record->event.pressed) {
+        set_scrolling = true;
+      } else {
+        set_scrolling = false;
+      }
+      return false;
   }
   return true;
 }
