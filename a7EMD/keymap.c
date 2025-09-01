@@ -142,118 +142,6 @@ void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);
 }
 
-
-typedef struct {
-    bool is_press_action;
-    uint8_t step;
-} tap;
-
-enum {
-    SINGLE_TAP = 1,
-    SINGLE_HOLD,
-    DOUBLE_TAP,
-    DOUBLE_HOLD,
-    DOUBLE_SINGLE_TAP,
-    MORE_TAPS
-};
-
-static tap dance_state[2];
-
-uint8_t dance_step(tap_dance_state_t *state);
-
-uint8_t dance_step(tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) return SINGLE_TAP;
-        else return SINGLE_HOLD;
-    } else if (state->count == 2) {
-        if (state->interrupted) return DOUBLE_SINGLE_TAP;
-        else if (state->pressed) return DOUBLE_HOLD;
-        else return DOUBLE_TAP;
-    }
-    return MORE_TAPS;
-}
-
-
-void on_dance_0(tap_dance_state_t *state, void *user_data);
-void dance_0_finished(tap_dance_state_t *state, void *user_data);
-void dance_0_reset(tap_dance_state_t *state, void *user_data);
-
-void on_dance_0(tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(LCTL(KC_A));
-        tap_code16(LCTL(KC_A));
-        tap_code16(LCTL(KC_A));
-    }
-    if(state->count > 3) {
-        tap_code16(LCTL(KC_A));
-    }
-}
-
-void dance_0_finished(tap_dance_state_t *state, void *user_data) {
-    dance_state[0].step = dance_step(state);
-    switch (dance_state[0].step) {
-        case SINGLE_TAP: register_code16(LCTL(KC_A)); break;
-        case SINGLE_HOLD: register_code16(LCTL(KC_B)); break;
-        case DOUBLE_TAP: register_code16(LCTL(KC_C)); break;
-        case DOUBLE_HOLD: register_code16(LCTL(KC_D)); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(LCTL(KC_A)); register_code16(LCTL(KC_A));
-    }
-}
-
-void dance_0_reset(tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state[0].step) {
-        case SINGLE_TAP: unregister_code16(LCTL(KC_A)); break;
-        case SINGLE_HOLD: unregister_code16(LCTL(KC_B)); break;
-        case DOUBLE_TAP: unregister_code16(LCTL(KC_C)); break;
-        case DOUBLE_HOLD: unregister_code16(LCTL(KC_D)); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(LCTL(KC_A)); break;
-    }
-    dance_state[0].step = 0;
-}
-void on_dance_1(tap_dance_state_t *state, void *user_data);
-void dance_1_finished(tap_dance_state_t *state, void *user_data);
-void dance_1_reset(tap_dance_state_t *state, void *user_data);
-
-void on_dance_1(tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(DE_DQOT);
-        tap_code16(DE_DQOT);
-        tap_code16(DE_DQOT);
-    }
-    if(state->count > 3) {
-        tap_code16(DE_DQOT);
-    }
-}
-
-void dance_1_finished(tap_dance_state_t *state, void *user_data) {
-    dance_state[1].step = dance_step(state);
-    switch (dance_state[1].step) {
-        case SINGLE_TAP: register_code16(DE_DQOT); break;
-        case SINGLE_HOLD: register_code16(DE_DQOT); break;
-        case DOUBLE_TAP: register_code16(DE_DQOT); break;
-        case DOUBLE_HOLD: register_code16(DE_DQOT); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(DE_DQOT); register_code16(DE_DQOT);
-    }
-}
-
-void dance_1_reset(tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state[1].step) {
-        case SINGLE_TAP: unregister_code16(DE_DQOT); break;
-        case SINGLE_HOLD: unregister_code16(DE_DQOT); break;
-        case DOUBLE_TAP: unregister_code16(DE_DQOT); break;
-        case DOUBLE_HOLD: unregister_code16(DE_DQOT); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(DE_DQOT); break;
-    }
-    dance_state[1].step = 0;
-}
-
-tap_dance_action_t tap_dance_actions[] = {
-        [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
-        [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
-};
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 
@@ -897,8 +785,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-<<<<<<< Conflict 2 of 2
-+++++++ Contents of side #1
 
 typedef struct {
     bool is_press_action;
