@@ -16,7 +16,7 @@
 #define DE_RCBR ALGR(KC_0)
 #define DE_AMPR S(KC_6)
 #define DE_DLR S(KC_4)
-#define DE_RING S(KC_GRV)
+#define DE_CIRC KC_GRV
 #define DE_EURO ALGR(KC_E)
 #define DE_PERC S(KC_5)
 #define DE_TILD ALGR(KC_RBRC)

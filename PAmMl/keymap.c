@@ -2,12 +2,14 @@
 #include "version.h"
 #include "i18n.h"
 #define MOON_LED_LEVEL LED_LEVEL
-#define ML_SAFE_RANGE SAFE_RANGE
+#ifndef ZSA_SAFE_RANGE
+#define ZSA_SAFE_RANGE SAFE_RANGE
+#endif
 
 enum custom_keycodes {
-  RGB_SLD = ML_SAFE_RANGE,
-  TOGAMING,
-  TOKOY,
+   RGB_SLD = ZSA_SAFE_RANGE,
+   TOGAMING,
+   TOKOY,
 };
 
 enum moonlander_layers {
@@ -32,6 +34,13 @@ enum tap_dance_codes {
 
 #define TO_WM    LM(WM, MOD_LALT | MOD_LCTL | MOD_LGUI)
 
+#define DUAL_FUNC_0 LT(9, KC_P)
+#define DUAL_FUNC_1 LT(6, KC_F20)
+#define DUAL_FUNC_2 LT(13, KC_F15)
+#define DUAL_FUNC_3 LT(3, KC_F6)
+#define DUAL_FUNC_4 LT(3, KC_B)
+#define DUAL_FUNC_5 LT(8, KC_V)
+#define DUAL_FUNC_6 LT(7, KC_F6)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [KOY] = LAYOUT_moonlander(
@@ -46,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     LCTL(KC_BSPC),  DE_AT,          DE_ACUT,        TD(DANCE_QUTS), TD(DANCE_QUE),  DE_HASH,        KC_TRANSPARENT,                                 KC_TRANSPARENT, DE_PLUS,        KC_7,           KC_8,           KC_9,           DE_LESS,        KC_TRANSPARENT, 
     LCTL(KC_TAB),   DE_PIPE,        TD(DANCE_BRC),  TD(DANCE_PRN),  TD(DANCE_CBR),  DE_AMPR,        KC_TRANSPARENT,                                                                 KC_TRANSPARENT, DE_MINS,        KC_4,           KC_5,           KC_6,           TD(DANCE_EQ),           KC_TRANSPARENT, 
-    KC_TRANSPARENT, DE_DLR,         DE_RING,        DE_EURO,        DE_PERC,        DE_TILD,                                        TD(DANCE_SLASH),KC_1,           KC_2,           KC_3,           CW_TOGG,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, DE_DLR,         DE_CIRC,        DE_EURO,        DE_PERC,        DE_TILD,                                        TD(DANCE_SLASH),KC_1,           KC_2,           KC_3,           CW_TOGG,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 TOGGLE_LAYER_COLOR,KC_TRANSPARENT, RGB_SPI,        RGB_SPD,        RGB_SAI,        RGB_SAD,        
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, TO_WM,          KC_TRANSPARENT
   ),
@@ -60,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [WM] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_BSPC,        KC_K,           KC_DOT,         KC_O,           KC_COMMA,       DE_Y,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_V,           KC_G,           KC_C,           KC_L,           DE_SS,          DE_Z,           
+    KC_BSPC,        DUAL_FUNC_6,    KC_DOT,         KC_O,           KC_COMMA,       DE_Y,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_V,           KC_G,           KC_C,           KC_L,           DE_SS,          DE_Z,           
     KC_TAB,         KC_H,           KC_A,           KC_E,           KC_I,           KC_U,           KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_D,           KC_T,           KC_R,           KC_N,           KC_S,           KC_F,           
     KC_LEFT_CTRL,   KC_X,           KC_Q,           DE_AE,          DE_UE,          DE_OE,                                          KC_B,           KC_P,           KC_W,           KC_M,           KC_J,           KC_TRANSPARENT, 
     KC_LEFT_ALT,    KC_LEFT_GUI,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -88,17 +97,23 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, LCTL(KC_X)),
     COMBO(combo1, LCTL(KC_C)),
     COMBO(combo2, LCTL(KC_V)),
-    COMBO(combo3, KC_LEFT_SHIFT),
+    COMBO(combo3, OSM(MOD_LSFT)),
     COMBO(combo4, CW_TOGG),
     COMBO(combo5, LCTL(LSFT(KC_C))),
     COMBO(combo6, LCTL(LSFT(KC_V))),
 };
+
 extern rgb_config_t rgb_matrix_config;
+
+RGB hsv_to_rgb_with_value(HSV hsv) {
+  RGB rgb = hsv_to_rgb( hsv );
+  float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+  return (RGB){ f * rgb.r, f * rgb.g, f * rgb.b };
+}
 
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
-
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [0] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {134,255,213}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
@@ -119,9 +134,8 @@ void set_layer_color(int layer) {
     if (!hsv.h && !hsv.s && !hsv.v) {
         rgb_matrix_set_color( i, 0, 0, 0 );
     } else {
-        RGB rgb = hsv_to_rgb( hsv );
-        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );   
+        RGB rgb = hsv_to_rgb_with_value(hsv);
+        rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
   }
 }
@@ -130,57 +144,85 @@ bool rgb_matrix_indicators_user(void) {
   if (rawhid_state.rgb_control) {
       return false;
   }
-  if (keyboard_config.disable_layer_led) { return false; }
-  switch (biton32(layer_state)) {
-    case 0:
-      set_layer_color(0);
-      break;
-    case 1:
-      set_layer_color(1);
-      break;
-    case 2:
-      set_layer_color(2);
-      break;
-   default:
-    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
+  if (!keyboard_config.disable_layer_led) { 
+    switch (biton32(layer_state)) {
+      case 0:
+        set_layer_color(0);
+        break;
+      case 1:
+        set_layer_color(1);
+        break;
+      case 2:
+        set_layer_color(2);
+        break;
+     default:
+        if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+          rgb_matrix_set_color_all(0, 0, 0);
+        }
+    }
+  } else {
+    if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
       rgb_matrix_set_color_all(0, 0, 0);
-    break;
+    }
   }
+
   return true;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-
-    case TOGAMING:
+ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+   switch (keycode) {
+ 
+     case TOGAMING:
+         if (record->event.pressed) {
+             layer_off(MOVEMENT);
+             layer_off(SYMBOLS);
+             layer_off(WM);
+             layer_on(GAMING);
+             autoshift_disable();
+             combo_disable();
+         }
+         return false;
+ 
+     case TOKOY:
+         if (record->event.pressed) {
+             layer_off(GAMING);
+             autoshift_enable();
+             combo_enable();
+         }
+         return false;
+ 
+     case RGB_SLD:
+         if (rawhid_state.rgb_control) {
+             return false;
+         }
+         if (record->event.pressed) {
+             rgblight_mode(1);
+         }
+         return false;
+    case DUAL_FUNC_6:
+      if (record->tap.count > 0) {
         if (record->event.pressed) {
-            layer_off(MOVEMENT);
-            layer_off(SYMBOLS);
-            layer_off(WM);
-            layer_on(GAMING);
-            autoshift_disable();
-            combo_disable();
+          register_code16(KC_K);
+        } else {
+          unregister_code16(KC_K);
         }
-        return false;
-
-    case TOKOY:
+      } else {
         if (record->event.pressed) {
-            layer_off(GAMING);
-            autoshift_enable();
-            combo_enable();
-        }
-        return false;
+          register_code16(LSFT(KC_K));
+        } else {
+          unregister_code16(LSFT(KC_K));
+        }  
+      }  
+      return false;
+   }
+   return true;
+}
 
-    case RGB_SLD:
-        if (rawhid_state.rgb_control) {
-            return false;
-        }
-        if (record->event.pressed) {
-            rgblight_mode(1);
-        }
-        return false;
-  }
-  return true;
+extern bool set_scrolling;
+extern bool navigator_turbo;
+extern bool navigator_aim;
+void pointing_device_init_user(void) {
+    set_auto_mouse_enable(true);
 }
 
 
@@ -198,7 +240,7 @@ enum {
     MORE_TAPS
 };
 
-static tap dance_state[8];
+static tap dance_state[2];
 
 uint8_t dance_step(tap_dance_state_t *state);
 
@@ -510,3 +552,4 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_SLASH] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_slash, dance_slash_finished, dance_slash_reset),
         [DANCE_EQ] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_eq, dance_eq_finished, dance_eq_reset),
 };
+
