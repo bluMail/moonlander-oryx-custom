@@ -24,45 +24,45 @@ enum tap_dance_codes {
   DANCE_1,
 };
 
-#define DUAL_FUNC_0 LT(13, KC_F19)
-#define DUAL_FUNC_1 LT(2, KC_F2)
-#define DUAL_FUNC_2 LT(1, KC_1)
-#define DUAL_FUNC_3 LT(9, KC_C)
-#define DUAL_FUNC_4 LT(8, KC_Q)
-#define DUAL_FUNC_5 LT(1, KC_W)
-#define DUAL_FUNC_6 LT(1, KC_F1)
-#define DUAL_FUNC_7 LT(13, KC_U)
-#define DUAL_FUNC_8 LT(14, KC_F14)
-#define DUAL_FUNC_9 LT(12, KC_F17)
-#define DUAL_FUNC_10 LT(15, KC_F20)
-#define DUAL_FUNC_11 LT(14, KC_N)
-#define DUAL_FUNC_12 LT(10, KC_2)
-#define DUAL_FUNC_13 LT(5, KC_F16)
-#define DUAL_FUNC_14 LT(6, KC_B)
-#define DUAL_FUNC_15 LT(4, KC_2)
-#define DUAL_FUNC_16 LT(11, KC_E)
-#define DUAL_FUNC_17 LT(9, KC_F24)
-#define DUAL_FUNC_18 LT(15, KC_F1)
-#define DUAL_FUNC_19 LT(14, KC_R)
-#define DUAL_FUNC_20 LT(9, KC_M)
-#define DUAL_FUNC_21 LT(8, KC_J)
-#define DUAL_FUNC_22 LT(5, KC_F18)
-#define DUAL_FUNC_23 LT(2, KC_F8)
-#define DUAL_FUNC_24 LT(3, KC_F6)
-#define DUAL_FUNC_25 LT(8, KC_F5)
-#define DUAL_FUNC_26 LT(13, KC_8)
-#define DUAL_FUNC_27 LT(11, KC_F18)
-#define DUAL_FUNC_28 LT(8, KC_I)
-#define DUAL_FUNC_29 LT(7, KC_2)
-#define DUAL_FUNC_30 LT(9, KC_E)
-#define DUAL_FUNC_31 LT(10, KC_P)
-#define DUAL_FUNC_32 LT(2, KC_X)
-#define DUAL_FUNC_33 LT(10, KC_F18)
-#define DUAL_FUNC_34 LT(3, KC_X)
-#define DUAL_FUNC_35 LT(15, KC_3)
-#define DUAL_FUNC_36 LT(2, KC_F16)
-#define DUAL_FUNC_37 LT(6, KC_Z)
-#define DUAL_FUNC_38 LT(1, KC_F21)
+#define DUAL_FUNC_0 LT(5, KC_F8)
+#define DUAL_FUNC_1 LT(6, KC_F1)
+#define DUAL_FUNC_2 LT(9, KC_S)
+#define DUAL_FUNC_3 LT(12, KC_F11)
+#define DUAL_FUNC_4 LT(10, KC_F22)
+#define DUAL_FUNC_5 LT(9, KC_F12)
+#define DUAL_FUNC_6 LT(3, KC_5)
+#define DUAL_FUNC_7 LT(5, KC_7)
+#define DUAL_FUNC_8 LT(4, KC_F7)
+#define DUAL_FUNC_9 LT(10, KC_G)
+#define DUAL_FUNC_10 LT(7, KC_T)
+#define DUAL_FUNC_11 LT(5, KC_F19)
+#define DUAL_FUNC_12 LT(6, KC_F18)
+#define DUAL_FUNC_13 LT(11, KC_F4)
+#define DUAL_FUNC_14 LT(14, KC_3)
+#define DUAL_FUNC_15 LT(9, KC_F3)
+#define DUAL_FUNC_16 LT(8, KC_F8)
+#define DUAL_FUNC_17 LT(7, KC_I)
+#define DUAL_FUNC_18 LT(4, KC_F4)
+#define DUAL_FUNC_19 LT(5, KC_B)
+#define DUAL_FUNC_20 LT(13, KC_F18)
+#define DUAL_FUNC_21 LT(10, KC_F18)
+#define DUAL_FUNC_22 LT(2, KC_6)
+#define DUAL_FUNC_23 LT(1, KC_Q)
+#define DUAL_FUNC_24 LT(2, KC_L)
+#define DUAL_FUNC_25 LT(1, KC_F)
+#define DUAL_FUNC_26 LT(7, KC_N)
+#define DUAL_FUNC_27 LT(10, KC_E)
+#define DUAL_FUNC_28 LT(11, KC_F17)
+#define DUAL_FUNC_29 LT(12, KC_T)
+#define DUAL_FUNC_30 LT(3, KC_F11)
+#define DUAL_FUNC_31 LT(1, KC_3)
+#define DUAL_FUNC_32 LT(9, KC_L)
+#define DUAL_FUNC_33 LT(4, KC_F11)
+#define DUAL_FUNC_34 LT(14, KC_G)
+#define DUAL_FUNC_35 LT(5, KC_N)
+#define DUAL_FUNC_36 LT(13, KC_8)
+#define DUAL_FUNC_37 LT(13, KC_F20)
+#define DUAL_FUNC_38 LT(4, KC_4)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 MO(3),          KC_TRANSPARENT
   ),
   [2] = LAYOUT_voyager(
-    RGB_TOG,        TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_SLD,        RGB_VAD,        RGB_VAI,                                        RGB_HUI,        RGB_HUD,        RGB_SAI,        RGB_SAD,        HSV_131_255_255,QK_BOOT,        
+    RGB_TOG,        TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_SLD,        RGB_VAD,        KC_ESCAPE,                                      RGB_HUI,        RGB_HUD,        RGB_SAI,        RGB_SAD,        HSV_131_255_255,QK_BOOT,        
     LCTL(KC_W),     KC_MS_WH_UP,    KC_MS_BTN1,     KC_MS_UP,       KC_MS_BTN2,     KC_MS_WH_LEFT,                                  DE_LCBR,        KC_HOME,        KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_MS_WH_DOWN,  KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_MS_WH_RIGHT,                                 DE_RCBR,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_ESCAPE,      
     KC_LEFT_GUI,    KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_MS_BTN4,     KC_MS_BTN5,                                     KC_G,           KC_WWW_BACK,    LCTL(KC_TAB),   KC_WWW_FORWARD, CW_TOGG,        KC_TRANSPARENT, 
@@ -129,6 +129,13 @@ extern bool navigator_turbo;
 extern bool navigator_aim;
 void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);
+}
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case DRAG_SCROLL ... NAVIGATOR_AIM:
+      return true;
+  }
+  return is_mouse_record_user(keycode, record);
 }
 
 
