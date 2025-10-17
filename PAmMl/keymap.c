@@ -34,7 +34,7 @@ enum tap_dance_codes {
   DANCE_EQ,
 };
 
-+#define TO_WM    LM(WM, MOD_LALT | MOD_LCTL | MOD_LGUI)
+#define TO_WM    LM(WM, MOD_LALT | MOD_LCTL | MOD_LGUI)
 #define DUAL_FUNC_0 LT(8, KC_B)
 #define DUAL_FUNC_1 LT(11, KC_6)
 #define DUAL_FUNC_2 LT(4, KC_P)
@@ -265,7 +265,7 @@ void pointing_device_init_user(void) {
 }
 bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
-        case DRAG_SCROLL ... NAVIGATOR_AIM:
+        case DRAG_SCROLL:
             return true;
     }
     return is_mouse_record_user(keycode, record);
