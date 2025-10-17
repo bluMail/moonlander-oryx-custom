@@ -85,6 +85,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
+        case DE_AE:
+            return false;
+        case DE_OE:
+            return false;
+        case DE_UE:
+            return false;
+        default:
+            return false;
+    }
+}
+
 const uint16_t PROGMEM combo0[] = { KC_T, KC_R, KC_H, COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_T, KC_R, KC_E, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_T, KC_R, KC_I, COMBO_END};
