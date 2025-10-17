@@ -110,7 +110,7 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM combo0[] = { KC_T, KC_R, KC_H, COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_T, KC_R, KC_E, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_T, KC_R, KC_I, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_SPACE, KC_ENTER, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_SPACE, OSM(MOD_LSFT), COMBO_END};
 const uint16_t PROGMEM combo4[] = { KC_R, KC_T, KC_I, KC_E, COMBO_END};
 const uint16_t PROGMEM combo5[] = { KC_T, KC_R, KC_N, KC_E, COMBO_END};
 const uint16_t PROGMEM combo6[] = { KC_T, KC_R, KC_N, KC_I, COMBO_END};
