@@ -110,7 +110,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, LCTL(KC_X)),
     COMBO(combo1, LCTL(KC_C)),
     COMBO(combo2, LCTL(KC_V)),
-    COMBO(combo3, KC_ENTER,
+    COMBO(combo3, KC_ENTER),
     COMBO(combo4, CW_TOGG),
     COMBO(combo5, LCTL(LSFT(KC_C))),
     COMBO(combo6, LCTL(LSFT(KC_V))),
