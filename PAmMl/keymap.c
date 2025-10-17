@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_H,           KC_A,           KC_E,           KC_I,           KC_U,           KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_D,           KC_T,           KC_R,           KC_N,           KC_S,           KC_F,           
     KC_LEFT_CTRL,   KC_X,           KC_Q,           DE_AE,          DE_UE,          DE_OE,                                          KC_B,           KC_P,           KC_W,           KC_M,           KC_J,           TD(DANCE_CMD),    
     KC_LEFT_ALT,    KC_LEFT_GUI,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, TOGAMING,                                                                                                       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_SPACE,       MO(1),          KC_TRANSPARENT,                 KC_TRANSPARENT, MO(2),          KC_ENTER
+    KC_SPACE,       MO(1),          KC_TRANSPARENT,                 KC_TRANSPARENT, MO(2),          OSM(MOD_LSFT)
   ),
   [SYMBOLS] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -110,7 +110,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, LCTL(KC_X)),
     COMBO(combo1, LCTL(KC_C)),
     COMBO(combo2, LCTL(KC_V)),
-    COMBO(combo3, OSM(MOD_LSFT)),
+    COMBO(combo3, KC_ENTER,
     COMBO(combo4, CW_TOGG),
     COMBO(combo5, LCTL(LSFT(KC_C))),
     COMBO(combo6, LCTL(LSFT(KC_V))),
