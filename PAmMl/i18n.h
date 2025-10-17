@@ -6,6 +6,10 @@
 #define DE_Z KC_Y
 #define DE_AT ALGR(KC_Q)
 #define DE_ACUT KC_EQL
+#define DE_DQOT S(KC_2)
+#define DE_QUOT S(KC_NUHS)
+#define DE_EXLM S(KC_1)
+#define DE_QST S(KC_MINS)
 #define DE_HASH KC_NUHS
 #define DE_PIPE ALGR(KC_NUBS)
 #define DE_LBRC ALGR(KC_8)
@@ -24,3 +28,5 @@
 #define DE_LESS KC_NUBS
 #define DE_MINS KC_SLSH
 #define DE_EQL S(KC_0)
+#define DE_SLSH S(KC_7)
+#define DE_BSLS ALGR(KC_MINS)
