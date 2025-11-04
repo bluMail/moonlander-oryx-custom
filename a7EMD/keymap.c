@@ -10,6 +10,10 @@ enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   HSV_131_255_255,
   DRAG_SCROLL,
+  NAVIGATOR_INC_CPI,
+  NAVIGATOR_DEC_CPI,
+  NAVIGATOR_TURBO,
+  NAVIGATOR_AIM
 };
 
 enum voyager_layers {
@@ -31,42 +35,42 @@ enum tap_dance_codes {
   DANCE_CBR,
 };
 
-#define DUAL_FUNC_4 LT(10, KC_F22)
-#define DUAL_FUNC_5 LT(9, KC_F12)
-#define DUAL_FUNC_6 LT(3, KC_5)
-#define DUAL_FUNC_7 LT(5, KC_7)
-#define DUAL_FUNC_8 LT(4, KC_F7)
+#define DUAL_FUNC_4 LT(6, KC_F12)
+#define DUAL_FUNC_5 LT(11, KC_F18)
+#define DUAL_FUNC_6 LT(13, KC_F5)
+#define DUAL_FUNC_7 LT(7, KC_C)
+#define DUAL_FUNC_8 LT(3, KC_F21)
 #define DUAL_FUNC_9 LT(10, KC_G)
-#define DUAL_FUNC_10 LT(7, KC_T)
-#define DUAL_FUNC_11 LT(5, KC_F19)
-#define DUAL_FUNC_12 LT(6, KC_F18)
-#define DUAL_FUNC_13 LT(11, KC_F4)
-#define DUAL_FUNC_14 LT(14, KC_3)
-#define DUAL_FUNC_15 LT(9, KC_F3)
-#define DUAL_FUNC_16 LT(8, KC_F8)
-#define DUAL_FUNC_17 LT(7, KC_I)
-#define DUAL_FUNC_18 LT(4, KC_F4)
-#define DUAL_FUNC_19 LT(5, KC_B)
-#define DUAL_FUNC_20 LT(13, KC_F18)
-#define DUAL_FUNC_21 LT(10, KC_F18)
-#define DUAL_FUNC_22 LT(2, KC_6)
-#define DUAL_FUNC_23 LT(1, KC_Q)
-#define DUAL_FUNC_24 LT(2, KC_L)
-#define DUAL_FUNC_25 LT(1, KC_F)
-#define DUAL_FUNC_26 LT(7, KC_N)
-#define DUAL_FUNC_27 LT(10, KC_E)
-#define DUAL_FUNC_28 LT(11, KC_F17)
-#define DUAL_FUNC_29 LT(12, KC_T)
-#define DUAL_FUNC_30 LT(3, KC_F11)
-#define DUAL_FUNC_31 LT(1, KC_3)
-#define DUAL_FUNC_32 LT(9, KC_L)
-#define DUAL_FUNC_33 LT(4, KC_F11)
-#define DUAL_FUNC_34 LT(14, KC_G)
-#define DUAL_FUNC_35 LT(5, KC_N)
-#define DUAL_FUNC_36 LT(13, KC_8)
-#define DUAL_FUNC_37 LT(13, KC_F20)
-#define DUAL_FUNC_38 LT(4, KC_4)
-#define DUAL_FUNC_39 LT(4, KC_5)
+#define DUAL_FUNC_10 LT(6, KC_A)
+#define DUAL_FUNC_11 LT(8, KC_G)
+#define DUAL_FUNC_12 LT(9, KC_2)
+#define DUAL_FUNC_13 LT(3, KC_Z)
+#define DUAL_FUNC_14 LT(12, KC_F5)
+#define DUAL_FUNC_15 LT(15, KC_K)
+#define DUAL_FUNC_16 LT(12, KC_T)
+#define DUAL_FUNC_17 LT(7, KC_H)
+#define DUAL_FUNC_18 LT(5, KC_F18)
+#define DUAL_FUNC_19 LT(14, KC_F18)
+#define DUAL_FUNC_20 LT(7, KC_F8)
+#define DUAL_FUNC_21 LT(5, KC_H)
+#define DUAL_FUNC_22 LT(15, KC_F6)
+#define DUAL_FUNC_23 LT(5, KC_G)
+#define DUAL_FUNC_24 LT(5, KC_P)
+#define DUAL_FUNC_25 LT(9, KC_F3)
+#define DUAL_FUNC_26 LT(10, KC_F15)
+#define DUAL_FUNC_27 LT(10, KC_F20)
+#define DUAL_FUNC_28 LT(7, KC_S)
+#define DUAL_FUNC_29 LT(14, KC_2)
+#define DUAL_FUNC_30 LT(14, KC_U)
+#define DUAL_FUNC_31 LT(11, KC_X)
+#define DUAL_FUNC_32 LT(14, KC_F24)
+#define DUAL_FUNC_33 LT(13, KC_F24)
+#define DUAL_FUNC_34 LT(13, KC_G)
+#define DUAL_FUNC_35 LT(6, KC_M)
+#define DUAL_FUNC_36 LT(8, KC_F21)
+#define DUAL_FUNC_37 LT(1, KC_U)
+#define DUAL_FUNC_38 LT(7, KC_F4)
+#define DUAL_FUNC_39 LT(8, KC_F6)
 
 #define TO_WM    LM(WM, MOD_LALT | MOD_LCTL | MOD_LGUI)
 
@@ -77,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSPC,        KC_K,           KC_DOT,         KC_O,           KC_COMMA,       DE_Y,                                           KC_V,           KC_G,           KC_C,           KC_L,           DE_SS,          DE_Z,           
     KC_TAB,         KC_H,           KC_A,           KC_E,           KC_I,           KC_U,                                           KC_D,           KC_T,           KC_R,           KC_N,           KC_S,           KC_F,           
     KC_LEFT_CTRL,   KC_X,           KC_Q,           DE_AE,          DE_UE,          DE_OE,                                          KC_B,           KC_P,           KC_W,           KC_M,           KC_J,           TD(DANCE_CMD),    
-                                                                    KC_SPACE,       MO(1),                                          MO(2),          KC_ENTER
+                                                                    KC_SPACE,       MO(1),                                          MO(2),          OSM(MOD_LSFT)
   ),
   [SYMBOLS] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,
@@ -90,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      RGB_TOG,        TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_SLD,    RGB_VAD,        RGB_VAI,                                        RGB_HUI,        RGB_HUD,        RGB_SAI,        RGB_SAD,        HSV_131_255_255,QK_BOOT,        
      LCTL(KC_W),     KC_MS_WH_UP,    KC_MS_BTN1,     KC_MS_UP,       KC_MS_BTN2,     KC_MS_WH_LEFT,                                  DE_LCBR,        KC_HOME,        KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
      KC_ESCAPE,      KC_MS_WH_DOWN,  KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_MS_WH_RIGHT,                                 DE_RCBR,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_ESCAPE,      
-     KC_LEFT_GUI,    KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_MS_BTN4,   KC_MS_BTN5,                                     KC_G,           KC_WWW_BACK,    LCTL(KC_TAB),   KC_WWW_FORWARD, CW_TOGG,        KC_TRANSPARENT, 
+     KC_LEFT_GUI,    KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_MS_BTN4,   KC_MS_BTN5,                                     KC_G,           KC_WWW_BACK,    LCTL(KC_TAB),   KC_WWW_FORWARD, CW_TOGG,        KC_ENTER, 
                                                                      KC_TRANSPARENT, TO_WM,                                          KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [WM] = LAYOUT_voyager(
@@ -100,25 +104,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LEFT_CTRL,   DUAL_FUNC_17,   DUAL_FUNC_18,   DUAL_FUNC_19,   DUAL_FUNC_20,   DUAL_FUNC_21,                                   DUAL_FUNC_34,   DUAL_FUNC_35,   DUAL_FUNC_36,   DUAL_FUNC_37,   DUAL_FUNC_38,   KC_TRANSPARENT, 
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
+  [4] = LAYOUT_voyager(
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_MS_WH_UP,    NAVIGATOR_TURBO,KC_TRANSPARENT, NAVIGATOR_AIM,  KC_MS_WH_LEFT,                                  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_MS_WH_DOWN,  KC_MS_BTN1,     DRAG_SCROLL,    KC_MS_BTN2,     KC_MS_WH_RIGHT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
+  ),
 };
 
 
 const uint16_t PROGMEM combo0[] = { KC_T, KC_R, KC_H, COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_T, KC_R, KC_E, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_T, KC_R, KC_I, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_SPACE, KC_ENTER, COMBO_END};
-const uint16_t PROGMEM combo4[] = { KC_E, KC_I, KC_T, KC_R, COMBO_END};
-const uint16_t PROGMEM combo5[] = { KC_E, KC_T, KC_R, KC_N, COMBO_END};
-const uint16_t PROGMEM combo6[] = { KC_I, KC_T, KC_R, KC_N, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_E, KC_I, KC_T, KC_R, COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_E, KC_T, KC_R, KC_N, COMBO_END};
+const uint16_t PROGMEM combo5[] = { KC_I, KC_T, KC_R, KC_N, COMBO_END};
+const uint16_t PROGMEM combo6[] = { KC_SPACE, OSM(MOD_LSFT), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, LCTL(KC_X)),
     COMBO(combo1, LCTL(KC_C)),
     COMBO(combo2, LCTL(KC_V)),
-    COMBO(combo3, OSM(MOD_LSFT)),
-    COMBO(combo4, CW_TOGG),
-    COMBO(combo5, LCTL(LSFT(KC_C))),
-    COMBO(combo6, LCTL(LSFT(KC_V))),
+    COMBO(combo3, CW_TOGG),
+    COMBO(combo4, LCTL(LSFT(KC_C))),
+    COMBO(combo5, LCTL(LSFT(KC_V))),
+    COMBO(combo6, KC_ENTER),
 };
 
 
@@ -128,18 +139,40 @@ extern bool set_scrolling;
 extern bool navigator_turbo;
 extern bool navigator_aim;
 void pointing_device_init_user(void) {
-    set_auto_mouse_enable(true);
+  set_auto_mouse_enable(true);
 }
-bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
-  switch (keycode) {
-    case DRAG_SCROLL:
+
+bool is_mouse_record_user(uint16_t keycode, keyrecord_t* record) {
+  // Treat all keys as mouse keys when in the automouse layer so that any key set resets the timeout without leaving the layer.
+  if (!layer_state_is(AUTO_MOUSE_TARGET_LAYER)){
+    // When depressing a mouse key with a LT key at the same time, the mouse key tracker is not decremented.
+    // This is a workaround to fix that
+    if (IS_MOUSE_KEYCODE(keycode) && !record->event.pressed) {
       return true;
+    }
+    return false;
   }
-  return is_mouse_record_user(keycode, record);
+  return true;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case QK_MODS ... QK_MODS_MAX: 
+    // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
+    // applied to the mouse key that was pressed.
+    if (IS_MOUSE_KEYCODE(QK_MODS_GET_BASIC_KEYCODE(keycode))) {
+    if (record->event.pressed) {
+        add_mods(QK_MODS_GET_MODS(keycode));
+        send_keyboard_report();
+        wait_ms(2);
+        register_code(QK_MODS_GET_BASIC_KEYCODE(keycode));
+        return false;
+      } else {
+        wait_ms(2);
+        del_mods(QK_MODS_GET_MODS(keycode));
+      }
+    }
+    break;
 
     // case DUAL_FUNC_0:
     //   if (record->tap.count > 0) {
@@ -748,6 +781,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_scrolling = false;
       }
       return false;
+  case NAVIGATOR_TURBO:
+    if (record->event.pressed) {
+      navigator_turbo = true;
+    } else {
+      navigator_turbo = false;
+    }
+    return false;
+  case NAVIGATOR_AIM:
+    if (record->event.pressed) {
+      navigator_aim = true;
+    } else {
+      navigator_aim = false;
+    }
+    return false;
+  case NAVIGATOR_INC_CPI:
+    if (record->event.pressed) {
+        pointing_device_set_cpi(1);
+    }
+    return false;
+  case NAVIGATOR_DEC_CPI:
+    if (record->event.pressed) {
+        pointing_device_set_cpi(0);
+    }
+    return false;
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
