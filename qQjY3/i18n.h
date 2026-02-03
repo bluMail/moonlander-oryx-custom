@@ -28,3 +28,5 @@
 #define IT_SLSH S(KC_7)
 #define DE_LCBR ALGR(KC_7)
 #define DE_RCBR ALGR(KC_0)
+#define IT_RABK S(KC_NUBS)
+#define IT_LABK KC_NUBS
