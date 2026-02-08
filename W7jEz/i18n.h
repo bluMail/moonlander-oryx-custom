@@ -21,3 +21,9 @@
 #define DE_RCBR ALGR(KC_0)
 #define IT_RABK S(KC_NUBS)
 #define IT_LABK KC_NUBS
+
+#define DE_EQL S(KC_0)
+#define DE_LBRC ALGR(KC_8)
+#define DE_RBRC ALGR(KC_9)
+#define DE_LPRN S(KC_8)
+#define DE_RPRN S(KC_9)
