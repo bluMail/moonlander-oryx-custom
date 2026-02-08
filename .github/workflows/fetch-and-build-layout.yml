@@ -12,6 +12,7 @@ on:
           - "PAmMl"
           - "a7EMD"
           - "qQjY3"
+          - "W7jEz"
         default: "a7EMD"
       layout_geometry:
         description: "Keyboard type"
