@@ -24,7 +24,7 @@ enum moonlander_layers {
 #undef KC_HASH
 #undef KC_DQUO
 #undef KC_EXLM
-#undef KC_RBRC
+#undef KC_RPRN
 #undef KC_LPRN
 #undef KC_LCBR
 #undef KC_SLASH
@@ -39,7 +39,7 @@ enum moonlander_layers {
 #define KC_LABK TD(DANCE_CMD)
 #define KC_DQUO TD(DANCE_QUTS)
 #define KC_EXLM TD(DANCE_QUE)
-#define KC_RBRC TD(DANCE_BRC)
+#define KC_RPRN TD(DANCE_BRC)
 #define KC_LPRN TD(DANCE_PRN)
 #define KC_LCBR TD(DANCE_CBR)
 #define KC_SLASH TD(DANCE_SLASH)
