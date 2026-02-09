@@ -67,6 +67,32 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 );
 
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MT(MOD_LGUI, KC_H):
+            return TAPPING_TERM + 110;
+        case MT(MOD_LALT, KC_A):
+            return TAPPING_TERM + 110;
+        case MT(MOD_LCTL, KC_E):
+            return TAPPING_TERM + 110;
+        case MEH_T(KC_I):
+            return TAPPING_TERM + 110;
+        case ALL_T(KC_U):
+            return TAPPING_TERM + 110;
+        case ALL_T(KC_D):
+            return TAPPING_TERM + 110;
+        case MEH_T(KC_T):
+            return TAPPING_TERM + 110;
+        case MT(MOD_RCTL, KC_R):
+            return TAPPING_TERM + 110;
+        case MT(MOD_RALT, KC_N):
+            return TAPPING_TERM + 110;
+        case MT(MOD_RGUI, KC_S):
+            return TAPPING_TERM + 110;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 
 extern rgb_config_t rgb_matrix_config;
