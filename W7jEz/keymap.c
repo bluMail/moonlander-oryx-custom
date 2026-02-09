@@ -22,7 +22,6 @@ enum moonlander_layers {
 
 
 #undef KC_HASH
-#undef KC_AT
 #undef KC_DQUO
 #undef KC_EXLM
 #undef KC_LBRC
@@ -30,11 +29,14 @@ enum moonlander_layers {
 #undef KC_LCBR
 #undef KC_SLASH
 #undef KC_EQUAL
+#undef KC_RABK
+#undef KC_LABK
 
 #define DE_UE KC_LBRC
 
+#define KC_RABK QK_REPEAT_KEY
 #define KC_HASH TOGAMING
-#define KC_AT TD(DANCE_CMD)
+#define KC_LABK TD(DANCE_CMD)
 #define KC_DQUO TD(DANCE_QUTS)
 #define KC_EXLM TD(DANCE_QUE)
 #define KC_LBRC TD(DANCE_BRC)
@@ -296,34 +298,34 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data);
 
 void on_dance_0(tap_dance_state_t *state, void *user_data) {
     if(state->count == 3) {
-        tap_code16(LCTL(KC_A));
-        tap_code16(LCTL(KC_A));
-        tap_code16(LCTL(KC_A));
+        tap_code16(QK_ALT_REPEAT_KEY);
+        tap_code16(QK_ALT_REPEAT_KEY);
+        tap_code16(QK_ALT_REPEAT_KEY);
     }
     if(state->count > 3) {
-        tap_code16(LCTL(KC_A));
+        tap_code16(QK_ALT_REPEAT_KEY);
     }
 }
 
 void dance_0_finished(tap_dance_state_t *state, void *user_data) {
     dance_state[0].step = dance_step(state);
     switch (dance_state[0].step) {
-        case SINGLE_TAP: register_code16(LCTL(KC_A)); break;
+        case SINGLE_TAP: register_code16(QK_ALT_REPEAT_KEY); break;
         case SINGLE_HOLD: register_code16(LCTL(KC_B)); break;
         case DOUBLE_TAP: register_code16(LCTL(KC_C)); break;
         case DOUBLE_HOLD: register_code16(LCTL(KC_D)); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(LCTL(KC_A)); register_code16(LCTL(KC_A));
+        case DOUBLE_SINGLE_TAP: tap_code16(QK_ALT_REPEAT_KEY); register_code16(LCTL(KC_A));
     }
 }
 
 void dance_0_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (dance_state[0].step) {
-        case SINGLE_TAP: unregister_code16(LCTL(KC_A)); break;
+        case SINGLE_TAP: unregister_code16(QK_ALT_REPEAT_KEY); break;
         case SINGLE_HOLD: unregister_code16(LCTL(KC_B)); break;
         case DOUBLE_TAP: unregister_code16(LCTL(KC_C)); break;
         case DOUBLE_HOLD: unregister_code16(LCTL(KC_D)); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(LCTL(KC_A)); break;
+        case DOUBLE_SINGLE_TAP: unregister_code16(QK_ALT_REPEAT_KEY); break;
     }
     dance_state[0].step = 0;
 }
@@ -619,7 +621,6 @@ bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 }
 
 #undef KC_HASH
-#undef KC_AT
 #undef KC_DQUO
 #undef KC_EXLM
 #undef KC_LBRC
