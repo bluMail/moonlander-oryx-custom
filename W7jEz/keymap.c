@@ -8,7 +8,7 @@
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
-  DRAG_SCROLL,
+  MAC_LOCK,
 };
 
 
@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSPC,        KC_K,           KC_DOT,         KC_O,           KC_COMMA,       DE_Y,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_V,           KC_G,           KC_C,           KC_L,           DE_SS,          DE_Z,           
     KC_TAB,         MT(MOD_LGUI, KC_H),MT(MOD_LALT, KC_A),MT(MOD_LCTL, KC_E),MEH_T(KC_I),    ALL_T(KC_U),    KC_TRANSPARENT,                                                                 KC_TRANSPARENT, ALL_T(KC_D),    MEH_T(KC_T),    MT(MOD_RCTL, KC_R),MT(MOD_RALT, KC_N),MT(MOD_RGUI, KC_S),KC_F,           
     KC_RABK,        KC_X,           KC_Q,           DE_AE,          DE_UE,          DE_OE,                                          KC_B,           KC_P,           KC_W,           KC_M,           KC_J,           KC_LABK,        
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_HASH,                                                                                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_HASH,                                                                                                        MAC_LOCK,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_SPACE,       MO(2),          KC_TRANSPARENT,                 KC_TRANSPARENT, MO(3),          MT(MOD_LSFT, KC_ENTER)
   ),
   [1] = LAYOUT_moonlander(
@@ -161,28 +161,6 @@ bool rgb_matrix_indicators_user(void) {
   return true;
 }
 
-extern bool set_scrolling;
-extern bool navigator_turbo;
-extern bool navigator_aim;
-void pointing_device_init_user(void) {
-  set_auto_mouse_enable(true);
-}
-
-bool is_mouse_record_user(uint16_t keycode, keyrecord_t* record) {
-  // Treat all keys as mouse keys when in the automouse layer so that any key set resets the timeout without leaving the layer.
-  if (!layer_state_is(AUTO_MOUSE_TARGET_LAYER)){
-    // When depressing a mouse key with a LT key at the same time, the mouse key tracker is not decremented.
-    // This is a workaround to fix that
-    if (IS_MOUSE_KEYCODE(keycode) && !record->event.pressed) {
-      return true;
-    }
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
 
 
 
@@ -204,6 +182,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     }
     break;
+    case MAC_LOCK:
+      HCS(0x19E);
 
     case RGB_SLD:
         if (rawhid_state.rgb_control) {
@@ -213,13 +193,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             rgblight_mode(1);
         }
         return false;
-    case DRAG_SCROLL:
-      if (record->event.pressed) {
-        set_scrolling = true;
-      } else {
-        set_scrolling = false;
-      }
-      return false;
   }
   return true;
 }
